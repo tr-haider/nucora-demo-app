@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Cancelled - Nucora</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .cancel-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .cancel-icon svg {
+            width: 50px;
+            height: 50px;
+            color: white;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .message {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .details {
+            background: #fff5f5;
+            border-left: 4px solid #f5576c;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .detail-value {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #e1e5e9;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 10px 20px rgba(245, 87, 108, 0.4);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e1e5e9;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .list {
+            text-align: left;
+            margin-top: 15px;
+        }
+
+        .list-item {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .list-item::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #f5576c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cancel-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </div>
+
+        <h1>Payment Cancelled</h1>
+        <p class="message">
+            Your payment was cancelled. No charges have been made to your account.
+        </p>
+
+        <div class="details">
+            <div class="detail-item">
+                <span class="detail-label">Status:</span>
+                <span class="detail-value">Cancelled</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Cancelled At:</span>
+                <span class="detail-value" id="cancelledDate"></span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Session ID:</span>
+                <span class="detail-value" id="sessionId" style="font-size: 12px; word-break: break-all;"></span>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <a href="checkout.html" class="btn btn-primary">Try Again</a>
+            <a href="#" onclick="window.close(); return false;" class="btn btn-secondary">Close</a>
+        </div>
+
+        <div class="info">
+            <p><strong>What happened?</strong></p>
+            <div class="list">
+                <div class="list-item">You chose to cancel the payment process</div>
+                <div class="list-item">No payment information was saved</div>
+                <div class="list-item">Your subscription remains unchanged</div>
+            </div>
+            <p style="margin-top: 15px;">If you'd like to subscribe, you can try again anytime.</p>
+        </div>
+    </div>
+
+    <script>
+        // Extract session_id from URL if present
+        const urlParams = new URLSearchParams(window.location.search);
+        const sessionId = urlParams.get('session_id');
+        
+        if (sessionId) {
+            document.getElementById('sessionId').textContent = sessionId;
+        } else {
+            document.getElementById('sessionId').textContent = 'Not available';
+        }
+
+        // Set cancelled date
+        const now = new Date();
+        document.getElementById('cancelledDate').textContent = now.toLocaleString();
+    </script>
+</body>
+</html>
+
